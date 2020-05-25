@@ -1,20 +1,17 @@
-(defun is-palindrome (number)
-  (cond ((oddp (length (write-to-string number)))
-         nil)
-        (1
-         (defvar string-size)
-         (defvar first-half-string)
-         (setq string-size (length (write-to-string number)))
-         (setq first-half-string 
-               (substring (write-to-string number) 
-                          0 ( / string-size 2)))
-         (defvar second-half-string)
-         (setq second-half-string 
-               (substring (write-to-string number) 
-                          ( / string-size 2 ) string-size))
-         (if (equal first-half-string (reverse second-half-string))
-             t
-             nil))))
+(defun is-palindrome? (number)
+  ;; Must be greater than or equal to 10
+  (if (>= 10 number)
+      (return-from is-palindrome? nil))
+
+  (let ((reversed_num 0) (temp_num number))
+    (loop while (> temp_num 0) do
+      (progn
+        (setq reversed_num (+ (* reversed_num 10) (mod temp_num 10)))
+        (setq temp_num (floor temp_num 10))))
+    
+    (if (= reversed_num number)
+           reversed_num
+           nil)))
 
 (defun largest-possible-product (number-of-ints)
   (defvar string-of-int)
